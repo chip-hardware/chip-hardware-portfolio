@@ -177,10 +177,6 @@
             text-decoration: underline;
         }
 
-        #it-content {
-            display: none;
-        }
-
         @media (max-width: 480px) {
             .container {
                 padding: 20px 15px;
@@ -206,11 +202,10 @@
                 <h1>chip<span>(c)</span></h1>
                 <p class="tagline">Audio Software & Pipeline Engineer | Quantitative Systems Developer</p>
             </div>
-            <button class="lang-switcher" onclick="toggleLanguage()" id="langBtn">IT</button>
+            <button class="lang-switcher" id="langBtn">IT</button>
         </header>
 
         <main>
-            <!-- ================= ENGLISH VERSION ================= -->
             <div id="en-content" lang="en">
                 <h2>1. Ultra-Fast Web Development (CrazySpeed Sites)</h2>
                 <div class="card">
@@ -243,8 +238,7 @@
                 </div>
             </div>
 
-            <!-- ================= ITALIAN VERSION ================= -->
-            <div id="it-content" lang="it">
+            <div id="it-content" lang="it" style="display: none;">
                 <h2>1. Sviluppo Web Ultra-Rapido (Siti CrazySpeed)</h2>
                 <div class="card">
                     <div class="card-header">
@@ -284,23 +278,43 @@
     </div>
 
     <script>
-        function toggleLanguage() {
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Page loaded!');
+            
+            const langBtn = document.getElementById('langBtn');
             const enContent = document.getElementById('en-content');
             const itContent = document.getElementById('it-content');
-            const langBtn = document.getElementById('langBtn');
             
-            if (enContent.style.display === 'none') {
-                enContent.style.display = 'block';
-                itContent.style.display = 'none';
-                langBtn.textContent = 'IT';
-                document.documentElement.lang = 'en';
-            } else {
-                enContent.style.display = 'none';
-                itContent.style.display = 'block';
-                langBtn.textContent = 'EN';
-                document.documentElement.lang = 'it';
-            }
-        }
+            console.log('📦 Elements:', {
+                btn: langBtn ? '✅' : '❌',
+                en: enContent ? '✅' : '❌',
+                it: itContent ? '✅' : '❌'
+            });
+            
+            // Встановлюємо початковий стан
+            enContent.style.display = 'block';
+            itContent.style.display = 'none';
+            
+            langBtn.addEventListener('click', function() {
+                console.log('🔄 Button clicked!');
+                
+                if (enContent.style.display === 'none') {
+                    enContent.style.display = 'block';
+                    itContent.style.display = 'none';
+                    langBtn.textContent = 'IT';
+                    document.documentElement.lang = 'en';
+                    console.log('🇬🇧 Switched to English');
+                } else {
+                    enContent.style.display = 'none';
+                    itContent.style.display = 'block';
+                    langBtn.textContent = 'EN';
+                    document.documentElement.lang = 'it';
+                    console.log('🇮🇹 Switched to Italian');
+                }
+            });
+            
+            console.log('✅ Ready!');
+        });
     </script>
 
 </body>
